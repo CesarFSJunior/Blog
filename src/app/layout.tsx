@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
+import { Roboto } from "next/font/google";
 import '@/app/globals.css'
 import Header from "./components/header/page";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-roboto",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Blog cSj",
@@ -9,8 +17,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-br">
-      <body>
+    <html lang="pt-br" className={roboto.variable}>
+      <body className={`bg-background text-foreground ${roboto.className}`}>
         <Header />
         {children}
       </body>
