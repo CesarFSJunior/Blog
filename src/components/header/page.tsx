@@ -5,7 +5,7 @@ import Link from "next/link";
 import { DiGithubBadge } from "react-icons/di"; 
 import { GrActions } from "react-icons/gr";
 import { TfiMenu, TfiClose } from "react-icons/tfi";
-import { useEstadoGlobal } from '@/app/components/state_provider/page';
+import { useEstadoGlobal } from '@/components/state_provider/page';
 
 
 export default function Header() {
