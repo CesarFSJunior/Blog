@@ -13,10 +13,9 @@ export async function generateStaticParams() {
   return files
     .filter((file) => file.endsWith('.mdx'))
     .map((file) => {
-      const slugName = file.replace('.mdx', '');
-      return {
-        // Para [...slug] (catch-all), o valor DEVE ser um array de strings
-        slug: [slugName], 
+        const slugName = file.replace(/\.mdx$/, '');
+        return {
+          slug: slugName.split('/'), // divide em segmentos reais
       };
     });
 }
@@ -37,7 +36,13 @@ export default async function BlogPostPage({ params }: Props) {
 
   // Transforma o array ['meu-post'] em uma string 'meu-post'
   const fileSlug = slugArray.join('/');
-  const mdxPath = path.join(process.cwd(), 'src/content', `${fileSlug}.mdx`);
+  const contentRoot = path.join(process.cwd(), 'src/content');
+  const mdxPath = path.join(contentRoot, `${fileSlug}.mdx`);
+
+  if (!mdxPath.startsWith(contentRoot)) {
+    notFound();
+  }
+  
 
   if (!fs.existsSync(mdxPath)) {
     notFound();
@@ -52,7 +57,7 @@ export default async function BlogPostPage({ params }: Props) {
         <header className="mb-6">
           <h1 className="text-4xl font-extrabold">{frontmatter.title}</h1>
           <p className="text-sm text-gray-500">{frontmatter.date}</p>
-          {frontmatter.tags.map((tag: string) => (
+          {(frontmatter.tags ?? []).map((tag: string) => (
             <span key={tag} className="inline-block bg-gray-200 text-gray-800 text-xs px-2 py-1 rounded mr-2">
               {tag}
             </span>
