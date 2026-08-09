@@ -27,7 +27,7 @@ export default function Header() {
 
 
     return (
-        <header className="p-2 shadow-2xs fixed w-full bg-background h-16 top-0" >
+        <header className="p-2 shadow-2xs fixed w-full bg-background h-16 top-0 z-50" >
             <nav className="max-w-7xl h-full mx-auto flex items-center justify-end gap-12 px-6 py-2">
                 <Link href='/' className='mr-auto cursor-pointer'>
                     <h1 className="text-2xl font-bold max-[24rem]:text-[1rem] items-center">cesarFSjunior</h1>

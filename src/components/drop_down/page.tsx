@@ -13,7 +13,7 @@ export default function DropDown() {
         <section 
             className={`min-h-screen pt-16 w-full bg-background absolute origin-top md:hidden transition duration-100 ease-out
                 ${valor
-                ? 'opacity-100 translate-y-0 pointer-events-auto'
+                ? 'opacity-100 translate-y-0 pointer-events-auto z-40'
                 : 'opacity-0 -translate-y-8 pointer-events-none'}`}
         >
             <ul className="min-h-[calc(100vh-4rem)] top-4 px-8 flex flex-col items-center gap-4" >
