@@ -39,7 +39,7 @@ export default function Header() {
                     <DiGithubBadge className="inline-block w-8 h-8 text-foreground" />
                 </a>
                 <GrActions className="inline-block w-6 h-6 text-foreground cursor-pointer max-md:hidden" onClick={() => setIsActive(!isActive)} />
-                <div className="relative w-6 h-6 flex items-center justify-center md:hidden cursor-pointer" onClick={() => setValor(!valor)}>
+                <div data-testid="menu-toggle" className="relative w-6 h-6 flex items-center justify-center md:hidden cursor-pointer" onClick={() => setValor(!valor)}>
                     <span className={`absolute w-full border-t-2 border-black transform origin-center transition duration-300
                         ${valor
                         ? 'rotate-45'

@@ -10,7 +10,8 @@ export default function DropDown() {
     const { valor } = useEstadoGlobal()
 
     return ( 
-        <section 
+        <section
+            data-testid="dropdown-menu"
             className={`min-h-screen pt-16 w-full bg-background fixed top-0 left-0 origin-top md:hidden transition duration-100 ease-out
                 ${valor
                 ? 'opacity-100 translate-y-0 pointer-events-auto z-40'
