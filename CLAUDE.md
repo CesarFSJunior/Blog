@@ -8,16 +8,16 @@ Personal blog built with Next.js 16 (App Router) + TypeScript + Tailwind CSS v4,
 
 ## Commands
 
-Package manager is **yarn** (`yarn.lock` is the lockfile the CI/CD workflow picks up — see `.github/workflows/nextjs.yml`, which auto-detects the package manager and prefers `yarn.lock` when present). Use `yarn`, not `npm`/`npx`, to avoid lockfile drift.
+Package manager is **yarn** (`yarn.lock` is the only lockfile; `package-lock.json` was removed to avoid drift). Use `yarn`, not `npm`/`npx`.
 
 ```bash
-yarn dev      # start dev server (localhost:3000)
-yarn build    # production build -> static export in ./out
-yarn start    # serve the Next.js build (not used for deployment; GitHub Pages serves ./out directly)
-yarn lint     # eslint
+yarn dev        # start dev server (localhost:3000)
+yarn build      # production build -> static export in ./out
+yarn start      # serve the Next.js build (not used for deployment; GitHub Pages serves ./out directly)
+yarn lint       # eslint
+yarn typecheck  # tsc --noEmit
+yarn test:e2e   # Playwright E2E tests (tests/e2e/); requires `yarn playwright install chromium` once per machine
 ```
-
-There is no test framework configured (no Jest/Vitest/Playwright in `package.json`).
 
 ## Architecture
 
@@ -52,7 +52,7 @@ Tailwind v4 is configured via `@theme` in [src/app/globals.css](src/app/globals.
 
 ### Deployment
 
-`.github/workflows/nextjs.yml` builds and deploys `./out` to GitHub Pages on every push to `main` (also triggerable manually via `workflow_dispatch`). It auto-detects yarn vs npm based on which lockfile is present.
+`.github/workflows/nextjs.yml` has three jobs: `test` (lint, typecheck, E2E) → `build` (`next build`, uploads `./out`) → `deploy` (publishes to GitHub Pages). `test` and `build` also run on pull requests targeting `main` for validation; `deploy` is skipped for PRs and only runs on push to `main` or `workflow_dispatch`.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
