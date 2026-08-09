@@ -2,7 +2,6 @@ import Link from "next/link"
 import path from "path";
 import fs from 'fs';
 import { compileMDX } from "next-mdx-remote/rsc";
-import { glob } from "glob";
 
 export default async function Page({
   params,
@@ -17,19 +16,19 @@ export default async function Page({
   
 
   const posts = await Promise.all(years.map(async (year) => {
-      const months = (await fs.promises.readdir(contentDir + '\\' +year.name, { withFileTypes: true })).reverse();
+      const months = (await fs.promises.readdir(contentDir + '/' +year.name, { withFileTypes: true })).reverse();
 
       const findMonths = await Promise.all(months.map(async (month) => {
-          const monthPath = year.name + '\\' + month.name
-          const days = (await fs.promises.readdir(contentDir + '\\' +monthPath, { withFileTypes: true })).reverse();
+          const monthPath = year.name + '/' + month.name
+          const days = (await fs.promises.readdir(contentDir + '/' +monthPath, { withFileTypes: true })).reverse();
 
           const findDays = await Promise.all(days.map(async day => {
-              const dayPath = monthPath + '\\' + day.name
-              const posts = (await fs.promises.readdir(contentDir + '\\' +dayPath, { withFileTypes: true })).reverse();
+              const dayPath = monthPath + '/' + day.name
+              const posts = (await fs.promises.readdir(contentDir + '/' +dayPath, { withFileTypes: true })).reverse();
           
 
               const findPosts = await Promise.all(posts.map(async (post) => {
-                const postPath = dayPath + '\\' + post.name
+                const postPath = dayPath + '/' + post.name
                 const content = await fs.readFileSync(path.join(contentDir, postPath), 'utf-8');
                 const { frontmatter } = await compileMDX<{ title: string, date: string, description: string}>({ 
                   source: content,
