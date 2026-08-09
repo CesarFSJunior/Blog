@@ -3,14 +3,12 @@ import path from 'path';
 import matter from 'gray-matter';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
+import { glob } from 'glob';
 
 // 1. CORREÇÃO AQUI: Garanta que o retorno mapeie a estrutura exata que o Next.js espera
 export async function generateStaticParams() {
   const contentDir = path.join(process.cwd(), 'src/content');
-  
-  if (!fs.existsSync(contentDir)) return [];
-
-  const files = fs.readdirSync(contentDir);
+  const files = await glob("**/*.mdx", { cwd: contentDir});
 
   return files
     .filter((file) => file.endsWith('.mdx'))
@@ -49,7 +47,7 @@ export default async function BlogPostPage({ params }: Props) {
   const { content, data: frontmatter } = matter(fileSource);
 
   return (
-    <main className="min-h-[calc(100vh-4rem)] flex items-center justify-center px-6 mt-16">
+    <main className="flex items-center justify-center px-6">
       <article className="max-w-2xl mx-auto py-8">
         <header className="mb-6">
           <h1 className="text-4xl font-extrabold">{frontmatter.title}</h1>

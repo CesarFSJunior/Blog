@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from "next/link";
 import { DiGithubBadge } from "react-icons/di"; 
 import { GrActions } from "react-icons/gr";
+import { TfiMenu, TfiClose } from "react-icons/tfi";
+import { useEstadoGlobal } from '@/app/components/state_provider/page';
 
 
 export default function Header() {
@@ -21,21 +23,33 @@ export default function Header() {
         }
     }, [isActive]);
 
+    const { valor, setValor } = useEstadoGlobal();
+
 
     return (
         <header className="p-2 shadow-2xs fixed w-full bg-background h-16 top-0" >
-            <div className="max-w-7xl mx-auto flex items-center justify-end gap-12 px-6 py-2">
+            <nav className="max-w-7xl h-full mx-auto flex items-center justify-end gap-12 px-6 py-2">
                 <Link href='/' className='mr-auto cursor-pointer'>
-                    <h1 className="text-2xl font-bold">cesarFSjunior</h1>
+                    <h1 className="text-2xl font-bold max-[24rem]:text-[1rem] items-center">cesarFSjunior</h1>
                 </Link>
-                <Link href="/about" className="hover:text-foreground border-b-2 border-transparent hover:border-foreground transition-colors duration-300 h-">
+                <Link href="/about" className="hover:text-foreground border-b-2 border-transparent hover:border-foreground transition-colors duration-300 max-md:hidden">
                     About
                 </Link>
-                <a href='https://github.com/CesarFSJunior' target='_blank' rel='noopener noreferrer'>
+                <a href='https://github.com/CesarFSJunior' target='_blank' rel='noopener noreferrer' className='max-md:hidden'>
                     <DiGithubBadge className="inline-block w-8 h-8 text-foreground" />
                 </a>
-                <GrActions className="inline-block w-6 h-6 text-foreground cursor-pointer" onClick={() => setIsActive(!isActive)} />
-            </div>
+                <GrActions className="inline-block w-6 h-6 text-foreground cursor-pointer max-md:hidden" onClick={() => setIsActive(!isActive)} />
+                <div className="relative w-6 h-6 flex items-center justify-center md:hidden cursor-pointer" onClick={() => setValor(!valor)}>
+                    <span className={`absolute w-full border-t-2 border-black transform origin-center transition duration-300
+                        ${valor
+                        ? 'rotate-45'
+                        : 'translate-y-1'}`} />
+                    <span className={`absolute w-full border-t-2 border-black transform origin-center transition duration-300
+                        ${valor
+                        ? '-rotate-45'
+                        : '-translate-y-1'}`} />
+                </div>
+            </nav>
         </header>
     )
 }

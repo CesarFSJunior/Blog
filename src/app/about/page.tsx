@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function FAQ() {
 
     return (
-        <main className="min-h-[calc(100vh-4rem)] mt-16 flex flex-col items-center justify-center px-6 text-2xl">
+        <main className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center px-6 text-2xl">
             <h2 className="text-4xl font-bold mb-20">Sobre Mim</h2>
             <section className="max-w-3xl">
                 <p className="mb-6">

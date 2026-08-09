@@ -29,3 +29,8 @@ body {
   font-weight: 500;
   line-height: 23px;
 }
+
+main {
+  padding-top: 4rem;
+  min-height: 100vh;
+}
