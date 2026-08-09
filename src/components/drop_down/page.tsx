@@ -11,7 +11,7 @@ export default function DropDown() {
 
     return ( 
         <section 
-            className={`min-h-screen pt-16 w-full bg-background absolute origin-top md:hidden transition duration-100 ease-out
+            className={`min-h-screen pt-16 w-full bg-background fixed top-0 left-0 origin-top md:hidden transition duration-100 ease-out
                 ${valor
                 ? 'opacity-100 translate-y-0 pointer-events-auto z-40'
                 : 'opacity-0 -translate-y-8 pointer-events-none'}`}
