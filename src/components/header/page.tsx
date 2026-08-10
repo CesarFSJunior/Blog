@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Link from "next/link";
 import { DiGithubBadge } from "react-icons/di"; 
 import { GrActions } from "react-icons/gr";
-import { TfiMenu, TfiClose } from "react-icons/tfi";
 import { useEstadoGlobal } from '@/components/state_provider/page';
 
 
@@ -40,11 +39,11 @@ export default function Header() {
                 </a>
                 <GrActions className="inline-block w-6 h-6 text-foreground cursor-pointer max-md:hidden" onClick={() => setIsActive(!isActive)} />
                 <div data-testid="menu-toggle" className="relative w-6 h-6 flex items-center justify-center md:hidden cursor-pointer" onClick={() => setValor(!valor)}>
-                    <span className={`absolute w-full border-t-2 border-black transform origin-center transition duration-300
+                    <span className={`absolute w-full border-t-2 border-foreground transform origin-center transition duration-300
                         ${valor
                         ? 'rotate-45'
                         : 'translate-y-1'}`} />
-                    <span className={`absolute w-full border-t-2 border-black transform origin-center transition duration-300
+                    <span className={`absolute w-full border-t-2 border-foreground transform origin-center transition duration-300
                         ${valor
                         ? '-rotate-45'
                         : '-translate-y-1'}`} />
