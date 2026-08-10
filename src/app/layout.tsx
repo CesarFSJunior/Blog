@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-br" className={roboto.variable}>
+    <html lang="pt-br" className={roboto.variable} suppressHydrationWarning>
       <body className={`bg-background text-foreground ${roboto.className} min-h-screen`}>
         <EstadoProvider>
           <Header />

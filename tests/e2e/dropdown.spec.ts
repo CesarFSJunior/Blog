@@ -36,4 +36,25 @@ test.describe('Mobile dropdown menu', () => {
     await toggle.click();
     await expect(dropdown).toHaveClass(/opacity-0/);
   });
+
+  test('closes automatically when navigating to About via the dropdown link', async ({ page }) => {
+    await page.goto('/');
+
+    const toggle = page.getByTestId('menu-toggle');
+    const dropdown = page.getByTestId('dropdown-menu');
+
+    await toggle.click();
+    await expect(dropdown).toHaveClass(/opacity-100/);
+
+    await page.getByRole('link', { name: 'About' }).click();
+
+    await expect(page).toHaveURL(/\/about$/);
+    await expect(dropdown).toHaveClass(/opacity-0/);
+  });
+
+  test('stays closed on initial load of a non-home route', async ({ page }) => {
+    await page.goto('/about');
+
+    await expect(page.getByTestId('dropdown-menu')).toHaveClass(/opacity-0/);
+  });
 });

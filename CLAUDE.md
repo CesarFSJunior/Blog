@@ -16,6 +16,7 @@ yarn build      # production build -> static export in ./out
 yarn start      # serve the Next.js build (not used for deployment; GitHub Pages serves ./out directly)
 yarn lint       # eslint
 yarn typecheck  # tsc --noEmit
+yarn test:unit  # Vitest unit tests (tests/unit/), jsdom + React Testing Library
 yarn test:e2e   # Playwright E2E tests (tests/e2e/); requires `yarn playwright install chromium` once per machine
 ```
 
@@ -52,7 +53,7 @@ Tailwind v4 is configured via `@theme` in [src/app/globals.css](src/app/globals.
 
 ### Deployment
 
-`.github/workflows/nextjs.yml` has three jobs: `test` (lint, typecheck, E2E) → `build` (`next build`, uploads `./out`) → `deploy` (publishes to GitHub Pages). `test` and `build` also run on pull requests targeting `main` for validation; `deploy` is skipped for PRs and only runs on push to `main` or `workflow_dispatch`.
+`.github/workflows/nextjs.yml` has three jobs: `test` (lint, typecheck, unit, E2E) → `build` (`next build`, uploads `./out`) → `deploy` (publishes to GitHub Pages). `test` and `build` also run on pull requests targeting `main` for validation; `deploy` is skipped for PRs and only runs on push to `main` or `workflow_dispatch`.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
