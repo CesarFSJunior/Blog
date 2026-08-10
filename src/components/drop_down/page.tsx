@@ -1,13 +1,25 @@
 "use client"
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 import ListItem from '../drop_down_item_list/page';
 import { useEstadoGlobal } from '../state_provider/page';
 
 
 export default function DropDown() {
 
-    const { valor } = useEstadoGlobal()
+    const { valor, setValor } = useEstadoGlobal()
+    const pathname = usePathname();
+    const isFirstRender = useRef(true);
+
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+        setValor(false);
+    }, [pathname, setValor]);
 
     return ( 
         <section
