@@ -46,6 +46,8 @@ jobs:
         run: yarn lint
       - name: Type check
         run: yarn typecheck
+      - name: Run unit tests
+        run: yarn test:unit
       - name: Install Playwright browsers
         run: yarn playwright install --with-deps chromium
       - name: Run E2E tests
