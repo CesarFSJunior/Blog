@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import Script from "next/script";
 import '@/app/globals.css'
 import Header from "@/components/header/page";
 import DropDown from "@/components/drop_down/page";
@@ -24,6 +25,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="pt-br" className={roboto.variable} suppressHydrationWarning>
       <body className={`bg-background text-foreground ${roboto.className} min-h-screen`}>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-JYHWEEKDQ0"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-JYHWEEKDQ0');`}
+        </Script>
         <EstadoProvider>
           <Header />
           <DropDown />
