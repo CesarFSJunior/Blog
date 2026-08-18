@@ -64,7 +64,7 @@ export default async function BlogPostPage({ params }: Props) {
           ))}
         </header>
 
-        <div className="prose dark:prose-invert">
+        <div className="prose">
           <MDXRemote source={content} />
         </div>
       </article>
