@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #FFFDF2;
@@ -19,6 +20,27 @@
   --color-foreground: var(--color);
   --color-card: var(--card);
   --color-highlight: var(--highlight);
+}
+
+.prose {
+  --tw-prose-body: var(--color);
+  --tw-prose-headings: var(--color);
+  --tw-prose-lead: var(--color);
+  --tw-prose-links: var(--highlight);
+  --tw-prose-bold: var(--color);
+  --tw-prose-counters: var(--highlight);
+  --tw-prose-bullets: var(--highlight);
+  --tw-prose-hr: color-mix(in srgb, var(--color) 20%, transparent);
+  --tw-prose-quotes: var(--color);
+  --tw-prose-quote-borders: var(--highlight);
+  --tw-prose-captions: color-mix(in srgb, var(--color) 70%, transparent);
+  --tw-prose-kbd: var(--color);
+  --tw-prose-kbd-shadows: var(--color);
+  --tw-prose-code: var(--highlight);
+  --tw-prose-pre-code: var(--color);
+  --tw-prose-pre-bg: var(--card);
+  --tw-prose-th-borders: color-mix(in srgb, var(--color) 20%, transparent);
+  --tw-prose-td-borders: color-mix(in srgb, var(--color) 10%, transparent);
 }
 
 body {
