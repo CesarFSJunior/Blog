@@ -4,6 +4,7 @@ import matter from 'gray-matter';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
 import { glob } from 'glob';
+import remarkGfm from 'remark-gfm';
 
 // 1. CORREÇÃO AQUI: Garanta que o retorno mapeie a estrutura exata que o Next.js espera
 export async function generateStaticParams() {
@@ -65,7 +66,10 @@ export default async function BlogPostPage({ params }: Props) {
         </header>
 
         <div className="prose">
-          <MDXRemote source={content} />
+          <MDXRemote
+            source={content}
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+          />
         </div>
       </article>
     </main>
